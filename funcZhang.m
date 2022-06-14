@@ -1,14 +1,25 @@
 (* ::Package:: *)
 
+(*
+This program is built based on the technique presented in the following articles:
+
+[1] Z. Zhang, "A Flexible New Technique for Camera Calibration", IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000.
+[2] W. Burger, "Zhang's Camera Calibration Algorithm: In-Depth Tutorial and Implementation", University of Applied Sciences Upper Austria, HGB16-05, 2016.
+
+*)
+
+
 funcZhang[pAs_,pBs_,LL_]:=Module[{norm,T,TT,getZeroSpace,sg,twolines,MM,hh,hh1a,hh2a,hh3a,hh1b,hh2b,hh3b,h2v,VV,B11,B12,B13,B22,B23,B33,v0,lmd,alp,bet,gmm,u0,AA,TTA,TTB,TTAB,funcHtoT},
 (*
-	Each of pAs and pBs is a 3rd order 4x4x2 array, representing 4x4 grid of the (x,y) coordinates.
-	LL is the physical length of the grid pitch.
-	The outputs are
-	  TTAB: 4x4 matrix: Pattern B seen from Pattern A
-	  AA: 3x4 matrix: Camera seen from Image
-	  TTA: 4x4 matrix: Pattern A seen from Camera
-	  TTB: 4x4 matrix: Pattern B seen from Camera
+	This function accepts the information on flat patterns A and B and provides the position/attitude relation between them. 
+	The patterns A and B are 4x4 grids and define the coordinate frames A and B, respectively. 
+	The arguments pAs and pBs are 4x4x2 arrays, representing the patterns A and B, respectively.
+	The argument LL is the physical length of the grid pitch of the patterns A and B.
+	The outputs are:
+	  TTAB: 4x4 matrix: Frame B seen from Frame A
+	  AA: 3x4 matrix: Camera Frame seen from Image
+	  TTA: 4x4 matrix: Frame A seen from Camera Frame
+	  TTB: 4x4 matrix: Frame B seen from Camera Frame
 *)
 	sg=-1; (* To make the camera frame to be right-handed. *)
 	norm[a_]:=Sqrt[a.a];

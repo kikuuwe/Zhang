@@ -45,10 +45,9 @@ funcZhang[pAs_,pBs_,LL_]:=Module[{norm,T,getZeroSpace,sg,twolines,MM,hh,hh1a,hh2
 	hh1b=hh[[{1,4,7}]];
 	hh2b=hh[[{2,5,8}]];
 	hh3b=hh[[{3,6,9}]];
-	VV={
-		h2v[hh1a,hh2a],h2v[hh1a,hh1a]-h2v[hh2a,hh2a],
-		h2v[hh1b,hh2b],h2v[hh1b,hh1b]-h2v[hh2b,hh2b],
-		{0,1,0,0,0,0},{1,0,-1,0,0,0}};
+	VV={	h2v[hh1a,hh2a],h2v[hh1a,hh1a]-h2v[hh2a,hh2a],
+				h2v[hh1b,hh2b],h2v[hh1b,hh1b]-h2v[hh2b,hh2b],
+				{0,1,0,0,0,0},{1,0,-1,0,0,0}};
 	{B11,B12,B22,B13,B23,B33}=getZeroSpace[VV];
 	B13=sg* B13;(*Si son negativos los 3 salen imaginarios*)
 	B23=sg* B23;

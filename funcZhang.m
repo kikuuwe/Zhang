@@ -9,7 +9,7 @@ This program is built based on the technique presented in the following articles
 *)
 
 
-funcZhang[pAs_,pBs_,LL_]:=Module[{norm,T,TT,getZeroSpace,sg,twolines,MM,hh,hh1a,hh2a,hh3a,hh1b,hh2b,hh3b,h2v,VV,B11,B12,B13,B22,B23,B33,v0,lmd,alp,bet,gmm,u0,AA,TTA,TTB,TTAB,funcHtoT},
+funcZhang[pAs_,pBs_,LL_]:=Module[{norm,T,getZeroSpace,sg,twolines,MM,hh,hh1a,hh2a,hh3a,hh1b,hh2b,hh3b,h2v,VV,B11,B12,B13,B22,B23,B33,v0,lmd,alp,bet,gmm,u0,AA,TTA,TTB,TTAB,funcHtoT},
 (*
 	This function accepts the information on flat patterns A and B and provides the position/attitude relation between them. 
 	The patterns A and B are 4x4 grids and define the coordinate frames A and B, respectively. 
@@ -24,7 +24,6 @@ funcZhang[pAs_,pBs_,LL_]:=Module[{norm,T,TT,getZeroSpace,sg,twolines,MM,hh,hh1a,
 	sg=-1; (* To make the camera frame to be right-handed. *)
 	norm[a_]:=Sqrt[a.a];
 	T=Transpose;
-	TT[a_]:=Transpose[{a}];
 	getZeroSpace[MM_]:=Module[{absMax,ss,hhh},
 		absMax[a_]:=Max[Table[Abs[a[[i]]],{i,Length[a]}]];
 		ss=DiagonalMatrix[Table[1/absMax[T[MM][[i]]],{i,Length[T[MM]]}]];
